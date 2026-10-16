@@ -1,0 +1,37 @@
+name: 回測
+
+on:
+  workflow_dispatch:
+    inputs:
+      years:
+        description: "回測幾年"
+        default: "2"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: data
+  cancel-in-progress: false
+
+jobs:
+  backtest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - run: python backtest.py --years ${{ github.event.inputs.years }}
+      - run: python screener.py   # 重新產生報表，把回測結果放上網頁
+      - name: 存回資料與報表
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data docs
+          git diff --cached --quiet || git commit -m "回測 ${{ github.event.inputs.years }} 年"
+          git pull --rebase
+          git push
