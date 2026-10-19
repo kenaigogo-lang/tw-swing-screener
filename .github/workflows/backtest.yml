@@ -28,10 +28,11 @@ jobs:
       - run: python backtest.py --years ${{ github.event.inputs.years }}
       - run: python screener.py   # 重新產生報表，把回測結果放上網頁
       - name: 存回資料與報表
+        if: always()   # 中途失敗也存回已下載的快取，重跑時可從斷點接續
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data docs
-          git diff --cached --quiet || git commit -m "回測 ${{ github.event.inputs.years }} 年"
+          git diff --cached --quiet || git commit -m "回測 ${{ github.event.inputs.years }} 年（${{ job.status }}）"
           git pull --rebase
           git push

@@ -37,7 +37,7 @@ def today_tw() -> dt.date:
     return dt.datetime.now(TZ).date()
 
 
-def _get_json(url: str, host: str, retries: int = 3):
+def _get_json(url: str, host: str, retries: int = 5):
     """
     依主機限速抓 JSON，失敗重試。
     重試後仍失敗就丟出例外中止程式，避免把「被封鎖」誤記成「非交易日」寫進快取。
@@ -60,7 +60,7 @@ def _get_json(url: str, host: str, retries: int = 3):
             return json.loads(buf.decode("utf-8"))
         except Exception as e:  # 網路錯誤、被擋、回傳非 JSON
             print(f"  [重試 {attempt + 1}/{retries}] {url} -> {e}")
-            time.sleep(10 * (attempt + 1))
+            time.sleep(15 * (attempt + 1))  # 15、30、45、60、75 秒，給不穩的主機時間恢復
     raise RuntimeError(f"無法取得資料：{url}")
 
 
