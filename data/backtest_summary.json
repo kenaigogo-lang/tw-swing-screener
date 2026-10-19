@@ -1,0 +1,71 @@
+{
+  "start": "2024-09-25",
+  "end": "2026-10-19",
+  "signals": 100,
+  "stats": {
+    "n": 96,
+    "win_rate": 45.8,
+    "tp_rate": 20.8,
+    "sl_rate": 42.7,
+    "time_rate": 36.5,
+    "avg_win": 6.37,
+    "avg_loss": -6.22,
+    "expectancy": -0.45,
+    "avg_days": 13.8
+  },
+  "rules": {
+    "take_profit": 0.1,
+    "stop_loss": 0.05,
+    "hold_days": 20,
+    "cost": 0.00585,
+    "max_picks": 5,
+    "market_ma": 60,
+    "price_min": 25,
+    "price_max": 100,
+    "pe_max": 15,
+    "pb_max": 1.5,
+    "vol_min": 1000,
+    "drawdown_min": 0.1,
+    "rebound_max": 0.06,
+    "kd_k_max": 40,
+    "kd_cross_days": 3,
+    "rsi_low": 35,
+    "trust_buy_days": 3,
+    "support_tolerance": 0.02
+  },
+  "by_year": {
+    "2024": {
+      "n": 21,
+      "win_rate": 23.8,
+      "tp_rate": 14.3,
+      "sl_rate": 66.7,
+      "time_rate": 19.0,
+      "avg_win": 7.56,
+      "avg_loss": -6.52,
+      "expectancy": -3.16,
+      "avg_days": 14.2
+    },
+    "2025": {
+      "n": 38,
+      "win_rate": 63.2,
+      "tp_rate": 23.7,
+      "sl_rate": 28.9,
+      "time_rate": 47.4,
+      "avg_win": 5.29,
+      "avg_loss": -6.99,
+      "expectancy": 0.77,
+      "avg_days": 14.5
+    },
+    "2026": {
+      "n": 37,
+      "win_rate": 40.5,
+      "tp_rate": 21.6,
+      "sl_rate": 43.2,
+      "time_rate": 35.1,
+      "avg_win": 7.69,
+      "avg_loss": -5.52,
+      "expectancy": -0.16,
+      "avg_days": 12.7
+    }
+  }
+}
